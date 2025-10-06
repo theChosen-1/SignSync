@@ -1,7 +1,6 @@
 # SignSync: ASL Alphabet Recognition
 
-A deep neural network built from scratch to recognize American Sign Language (ASL) alphabet gestures. This project demonstrates fundamental deep learning concept.
-
+A deep neural network built from from scratch with NumPy to recognize American Sign Language (ASL) alphabet gestures. This project demonstrates fundamental deep learning concepts without relying on high-level frameworks like TensorFlow or PyTorch.
 ![Demo](assets/demo.gif)
 
 ## Overview
