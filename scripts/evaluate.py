@@ -6,6 +6,8 @@ import argparse
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import confusion_matrix, classification_report
+from src.model import DeepNeuralNetwork
+from src.utils import load_data
 
 
 def plot_confusion_matrix(y_true, y_pred, classes, save_path='assets/confusion_matrix.png'):
