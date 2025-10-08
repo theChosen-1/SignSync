@@ -1,10 +1,11 @@
-# scripts/train.py
 import numpy as np
+import matplotlib.pyplot as plt
 import sys
-sys.path.append('.')
+import os
+# Add project root to path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from src.model import DeepNeuralNetwork
 from src.utils import load_data
-import matplotlib.pyplot as plt
 
 def main():
     print("="*50)

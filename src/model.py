@@ -1,11 +1,9 @@
-# src/model.py
 import numpy as np
 import pickle
 from .utils import *
 
+# L-layer Deep Neural Network for multi-class classification.
 class DeepNeuralNetwork:
-    """L-layer Deep Neural Network for multi-class classification."""
-    
     def __init__(self, layer_dims, learning_rate=0.009):
         """
         Initialize the neural network.
@@ -106,7 +104,7 @@ class DeepNeuralNetwork:
         return accuracy
     
     def save(self, filepath):
-        """Save model parameters to file."""
+        # Save model parameters to file.
         with open(filepath, 'wb') as f:
             pickle.dump({
                 'parameters': self.parameters,
@@ -118,7 +116,7 @@ class DeepNeuralNetwork:
     
     @classmethod
     def load(cls, filepath):
-        """Load model from file."""
+        # Load model from file.
         with open(filepath, 'rb') as f:
             data = pickle.load(f)
         
@@ -127,3 +125,4 @@ class DeepNeuralNetwork:
         model.costs = data['costs']
         print(f"Model loaded from {filepath}")
         return model
+    
