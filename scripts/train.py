@@ -26,13 +26,13 @@ def main():
     
     print(f"\n[2/5] Creating model...")
     print(f"Architecture: {layer_dims}")
-    model = DeepNeuralNetwork(layer_dims, learning_rate=0.009)
+    model = DeepNeuralNetwork(layer_dims, learning_rate=0.0075)
     
     # Train
     print(f"\n[3/5] Training...")
     parameters, costs = model.train(
         train_x, train_y, 
-        num_iterations=2500, 
+        num_iterations=10000, 
         print_cost=True
     )
     
