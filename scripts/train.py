@@ -2,12 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 import os
-# Add project root to path
+# Add project root and src to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from src.model import DeepNeuralNetwork
 from src.utils import load_data
 
-def main():
+def main(): 
     print("="*50)
     print("SignSync: ASL Alphabet Recognition")
     print("="*50)
@@ -61,7 +62,7 @@ def main():
     plt.savefig('assets/training_curve.png', dpi=300, bbox_inches='tight')
     print("✓ Training curve saved to assets/training_curve.png")
     
-    print("\n✅ Training complete!")
+    print("\n Training complete!")
 
 if __name__ == "__main__":
     main()

@@ -40,22 +40,41 @@ def sigmoid_backward(dA, cache):
 
 
     # DATA 
-def load_data(): ## edit this
-    """Load ASL alphabet dataset from CSV files."""
-    # Download from Kaggle first
+def load_data(): 
+    # Load ASL alphabet dataset from CSV files.
     train_df = pd.read_csv('data/datasets/sign_mnist_train.csv')
     test_df = pd.read_csv('data/datasets/sign_mnist_test.csv')
     
     # Separate features and labels
     train_x = train_df.drop('label', axis=1).values.T # train set features 
-    train_y = train_df['label'].values.reshape(1, -1) # train set labels
+    train_y_raw = train_df['label'].values  # assign raw labels first
     
-    test_x = test_df.drop('label', axis=1).values.T # train set features 
-    test_y = test_df['label'].values.reshape(1, -1) # train set labels
+    test_x = test_df.drop('label', axis=1).values.T # test set features 
+    test_y_raw = test_df['label'].values  # assign raw labels first
     
+    # The dataset has labels 0-25, but we only want 0-23
+    # Remove samples with labels 9 (J) and 25 (Z) if they exist
+    train_mask = (train_y_raw != 9) & (train_y_raw != 25)
+    train_x = train_x[:, train_mask]
+    train_y_raw = train_y_raw[train_mask]
+    
+    test_mask = (test_y_raw != 9) & (test_y_raw != 25)
+    test_x = test_x[:, test_mask]
+    test_y_raw = test_y_raw[test_mask]
+
+    # Remap labels: 0-8 stay same, 10-24 become 9-23
+    def remap_labels(labels):
+        remapped = labels.copy()
+        remapped[labels > 9] -= 1  # Shift down labels after J
+        return remapped
+    
+    train_y = remap_labels(train_y_raw).reshape(1, -1)
+    test_y = remap_labels(test_y_raw).reshape(1, -1)
+
     # Normalize pixel values
     train_x = train_x / 255.0
     test_x = test_x / 255.0
+    
     # Class names (A-Z minus J and Z)
     classes = np.array([chr(i) for i in range(65, 91) if chr(i) not in ['J', 'Z']])
     

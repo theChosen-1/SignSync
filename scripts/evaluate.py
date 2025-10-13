@@ -7,11 +7,12 @@ import seaborn as sns
 from sklearn.metrics import confusion_matrix, classification_report
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from src.model import DeepNeuralNetwork
 from src.utils import load_data
 
 def plot_confusion_matrix(y_true, y_pred, classes, save_path='assets/confusion_matrix.png'):
-    """Plot and save confusion matrix."""
+    # Plot and save confusion matrix.
     cm = confusion_matrix(y_true.flatten(), y_pred.flatten())
     
     plt.figure(figsize=(12, 10))
